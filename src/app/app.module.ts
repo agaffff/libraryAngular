@@ -13,6 +13,10 @@ import { ShowGenComponent } from './genres/show-gen/show-gen.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShowBooksComponent } from './author/add-edit-aut/show-books/show-books.component';
+import { AddEditBookComponent } from './author/add-edit-aut/add-edit-book/add-edit-book.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +25,18 @@ import {HttpClientModule} from '@angular/common/http';
     ShowAutComponent,
     GenresComponent,
     AddEditGenComponent,
-    ShowGenComponent
+    ShowGenComponent,
+    ShowBooksComponent,
+    AddEditBookComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

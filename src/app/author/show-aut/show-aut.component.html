@@ -1,13 +1,6 @@
+<app-add-edit-aut  *ngIf="VisibleAddEditAut" [author]=author (formClosed)="hideFormEdit()"></app-add-edit-aut>
 
-
-
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
-<button type="button" class="btn btn-light btn-outline-primary " >Добавить автора</button>
-
-</div>
-<!--<app-form-author [author]="author" *ngIf="visibleForm" (onChanged)="onChanged($event)"></app-form-author>-->
-
+<button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить автора</button>
 
 <table class="table table-striped">
     <thead>
@@ -29,10 +22,10 @@
                     {{author.birthday}}
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3"(click)="editClick(author)" >Редактировать</button>
+                    <button class="btn btn-link col-sm-3"(click)="editAuthor(author.id)">Редактировать</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3" (click)="deleteAuthor(author.id)">Удалить</button>
+                    <button class="btn btn-link col-sm-3" (click)="deleteAuthor(author.id)" >Удалить</button>
                 </td>
                 <td>
                     <button class="btn btn-link col-sm-3" >Детали</button>
@@ -43,4 +36,6 @@
 
     </tbody>
 </table>
+
+
 

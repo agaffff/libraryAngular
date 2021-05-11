@@ -1,66 +1,113 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Author } from 'src/app/author';
+import { Book } from './book';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  //author: Author;
+  readonly APIUrl = "http://localhost:3000"
 
   constructor(private http: HttpClient) { }
 
-
-  //getAutList(): Observable<any[]> {
-    
-    //return this.http.get('assets/user.json').subscribe((data:Author) => this.author=data);
-    //return this.http.get<any>("our step");
-  //}
-
-  getData(){
-    return this.http.get('assets/authors.json');
-  }
-  
-  getDataGenres(){
-    return this.http.get('assets/genres.json');
-  }
-/*
-  //getAutList() {
-    
-  //  return this.http.get('assets/author.json').subscribe(data => this.author=data]);
-    //return this.http.get<any>("our step");
-  //}
-
-
-  //addAuthor(val: any) {
-    //return this.http.post("our step");
-  //}
-  //updateAuthor(val: any) {
-    //return this.http.put("our step");
-  //}
-  
-
-  getGenList(): Observable<any[]> {
-    return this.http.get<any>("our step");
-  }
-  //addGenres(val: any) {
-    //return this.http.post("our step");
-  //}
-  //updateGenres(val: any) {
-    //return this.http.put("our step");
-  //}
-  deleteGenres(val: any) {
-    return this.http.delete("our step");
+  getDataAuthors(): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/authorlist');
   }
 
-  getAllAuthorNames():Observable<any[]>{
-    return this.http.get<any[]>("our");
+  addAuthor(val: any) {
+    console.log(val);
+    return this.http.post(this.APIUrl + '/authorlist', val).subscribe(
+      data => {
+        console.log('POST Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
   }
-  */
-  deleteAuthor(id: number) {
-    //TODO: реализовать уделение на в JSON
-    return this.http.get('assets/authors.json');//this.http.delete("our step");
+
+  updateAuthor(val: any) {
+    return this.http.patch(this.APIUrl + '/authorlist/' + val.id, val).subscribe(
+      data => {
+        console.log('PATCH Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
   }
+
+  deleteAuthor(val: any) {
+    return this.http.delete(this.APIUrl + '/authorlist/' + val).subscribe(
+      data => {
+        console.log('DELETE Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
+  }
+
+  getDataBooksFilter(val: []): Observable<any[]> {
+
+    let params = '';
+    val.forEach(element => {
+      if (params == '')
+        params = params + 'id=' + element
+      else
+        params = params + '&id=' + element
+    });
+
+    console.log(this.APIUrl + '/bookslist?' + params);
+    if (params == '')
+      return this.http.get<any>(this.APIUrl + '/bookslist?id=-1');
+    return this.http.get<any>(this.APIUrl + '/bookslist?' + params);
+
+    //Это заглушка которая получает все книжки
+    return this.http.get<any>(this.APIUrl + '/bookslist');
+
+  }
+
+  getDataBooks(): Observable<any[]> {
+    //Это заглушка которая получает все книжки
+    return this.http.get<any>(this.APIUrl + '/bookslist/');
+
+  }
+
+
+  getDataGenres() {
+    return this.http.get<any>(this.APIUrl + '/genreslist/');
+  }
+
+  addGenre(val: any) {
+    return this.http.post(this.APIUrl + '/genreslist/', val).subscribe(
+      data => {
+        console.log('POST Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
+  }
+  updateGenre(val: any) {
+    return this.http.patch(this.APIUrl + '/genreslist/' + val.id, val).subscribe(
+      data => {
+        console.log('PATCH Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
+  }
+  deleteGenre(val: any) {
+    //TODO: перед удалением сделать проверку не используется ли такой жанр в существующих книгах, если используется не удалять жанр
+    return this.http.delete(this.APIUrl + '/genreslist/' + val).subscribe(
+      data => {
+        console.log('DELETE Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
+  }
+
+
 }

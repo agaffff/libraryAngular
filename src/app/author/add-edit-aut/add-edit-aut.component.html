@@ -1,1 +1,30 @@
-<p>add-edit-aut works!</p>
+<div class="container">
+    <div class="input-group mb-4 col-md-4">
+        <span for="validationCustom01"class="input-group-text" id="inputGroup-sizing-sm">Фамилия</span>
+        <input [(ngModel)]="firstName" type="text" name="first" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" required>
+    </div>
+    <div class="input-group mb-4 col-md-4">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Имя</span>
+        <input [(ngModel)]="lastName" type="text" name="last" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" required>
+    </div>
+    <div class="input-group mb-4 col-md-4">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Отчество</span>
+        <input [(ngModel)]="middleName" type="text" name="middle" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-4 col-md-4">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Дата рождения</span>
+        <input [(ngModel)]="birthday" type="date" name="birthd" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" required>
+    </div>
+    <div>
+        <app-show-books [books]=books ></app-show-books>
+
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-primary" (click)="saveAuthor()">Сохранить</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onCancel()">Отмена</button>
+    </div>
+</div>

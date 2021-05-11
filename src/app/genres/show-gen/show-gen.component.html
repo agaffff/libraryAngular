@@ -1,9 +1,6 @@
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<app-add-edit-gen *ngIf="VisibleAddEditGen" [genre]=genre (formClosed)="hideFormEdit()"></app-add-edit-gen>
+<button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить жанр</button>
 
-    <button type="button" class="btn btn-light btn-outline-primary " >Добавить жанр</button>
-    
-    </div>
-<app-add-edit-gen></app-add-edit-gen>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -19,10 +16,10 @@
                     {{genre.name}}
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3">Редактировать</button>
+                    <button class="btn btn-link col-sm-3" (click)="editGenre(genre.id)">Редактировать</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3">Удалить</button>
+                    <button class="btn btn-link col-sm-3" (click)="deleteGenre(genre.id)">Удалить</button>
                 </td>
             </tr>
 

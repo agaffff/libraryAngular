@@ -1,0 +1,37 @@
+<!-- <app-add-edit-books *ngIf="VisibleAddEditBook" [book]=book (formClosed)="hideFormEdit()"></app-add-edit-books> -->
+
+<!-- <button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить новую книгу</button> -->
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Кол-во страниц</th>
+            <th>Жанр</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let book of books">
+            <tr>
+                <td>
+                    {{book.name}}
+                </td>
+                <td>
+                    {{book.str}}
+                </td>
+                <td>
+                    {{book.genre}}
+                </td>
+                <td>
+                    <button class="btn btn-link col-sm-3" (click)="editBook(book.id)">Редактировать</button>
+                </td>
+                <td>
+                    <button class="btn btn-link col-sm-3" (click)="deleteBook(book.id)">Удалить</button>
+                </td>
+            </tr>
+
+        </ng-container>
+    </tbody>
+</table>

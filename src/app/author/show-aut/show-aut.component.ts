@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Author } from 'src/app/author';
-import {SharedService} from 'src/app/shared.service';
+import { SharedService } from 'src/app/shared.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { delay } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-show-aut',
@@ -10,45 +13,84 @@ import {SharedService} from 'src/app/shared.service';
 })
 export class ShowAutComponent implements OnInit {
 
-  author:any;
-  authors: Author[]=[];
-  Modaltitle:string = 'fdf';
-  visibleForm: boolean = false;
+  author: any;
+  
+  authors: Author[] = [];
 
-  constructor(private service:SharedService) { }
+  ModalTitle!: string;
+  VisibleAddEditAut: boolean = false;
+  loading: boolean = true;
+  closeResult = '';
 
-  ngOnInit(){
-    //this.refreshAutList();
-    //this.AuthorList = this.service.getAuthortList();
-
-    //получаем список авторов из authors.json
-    this.service.getData().subscribe(data => this.authors = data["authorList"]);
+  constructor(private service: SharedService, private modalService: NgbModal) {
   }
-  /*visibleFormEdit() {
-    if (this.visibleForm == false) {
-    //  this.id = 0;
-      this.visibleForm = true;
+
+  ngOnInit() {
+    this.refreshAutList()
+          
+  }
+
+//
+  editAuthor(id: number){
+    this.author= this.authors.find(aut=>aut.id == id)
+    this.visibleFormEdit();
+  }
+
+  //получаем список авторов из authors.json
+  refreshAutList() {
+    this.service.getDataAuthors()
+     .subscribe(data => {
+      this.authors = data;
+    });
+    
+    //console.log('Длина массива авторов: '+ this.authors.length);  
+  }
+
+  //скрываем форму добавления/реадктирования автора
+  hideFormEdit() {
+    this.VisibleAddEditAut = false;
+    //this.refreshAutList();
+  }
+
+
+  
+
+  closeClick() {
+    this.VisibleAddEditAut = false;
+    this.refreshAutList();
+  }
+
+  visibleFormEdit() {
+    /*
+    console.log("New author");
+    this.author = {
+      id: 0,
+      lastName: "",
+      firstName: "",
+      middleName: "",
+      birthday: ""
     }
+    */
+    this.VisibleAddEditAut = true;
   }
   
-  refreshAutList(){
-    //this.service.getAutList().subscribe(data=>{
-    //  this.AuthorList=data;
-    //}
-  };
-  */
+
+  /*
   fillDataAuthorForm(id: number) {
     this.visibleForm = true;
-    this.author = this.authors.find(author=>author.id ==id)
+    this.author = this.authors.find((author: { id: number; })=>author.id ==id)
 
   }
   deleteAuthor(id: number) {
-    console.log(id);
-    this.author = this.service.deleteAuthor(id);
-  }
-  editClick(author:any){
+     this.author = this.service.deleteAuthor(id);
+  }*/
+  /*editClick(author:any){
     this.author=author;
-    this.Modaltitle="";
+    this.ModalTitle="";
     this.visibleForm=true;
+  }*/
+  deleteAuthor(id:any) {
+    this.service.deleteAuthor(id)
   }
 }
+

@@ -3,6 +3,7 @@ export class Author{
     public lastName!: string;
     public firstName!: string;
     public middleName!: string;
-    public birthday!: number;
+    public birthday!: string;
+    public books!:any;
 }
 

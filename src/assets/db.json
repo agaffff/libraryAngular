@@ -1,0 +1,151 @@
+{
+  "authorlist": [
+    {
+      "id": 1,
+      "lastName": "Пушкин",
+      "firstName": "Александр",
+      "middleName": "Сергеевич",
+      "birthday": "1799-05-26",
+      "books": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "lastName": "Тургенев",
+      "firstName": "Иван",
+      "middleName": "Сергеевич",
+      "birthday": "1818-10-28",
+      "books": []
+    },
+    {
+      "id": 3,
+      "lastName": "Шевченко",
+      "firstName": "Тарас",
+      "middleName": "Григорьевич",
+      "birthday": "1814-02-25",
+      "books": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 4,
+      "lastName": "Достоевский",
+      "firstName": "Федор",
+      "middleName": "Михайлович",
+      "birthday": "1814-02-25",
+      "books": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "lastName": "Агафонова",
+      "firstName": "Ольга",
+      "middleName": "Иванова",
+      "birthday": "2021-03-31",
+      "books": []
+    },
+    {
+      "id": 6,
+      "lastName": "Агафонова",
+      "firstName": "Ольга",
+      "middleName": "Петрова",
+      "birthday": "2021-05-23",
+      "books": []
+    },
+    {
+      "id": 7,
+      "lastName": "ffffff",
+      "firstName": "fffffffff",
+      "middleName": "ffffffff",
+      "books": []
+    }
+  ],
+  "genreslist": [
+    {
+      "id": 1,
+      "name": "Поэма"
+    },
+    {
+      "id": 2,
+      "name": "Стихи"
+    },
+    {
+      "id": 3,
+      "name": "Проза"
+    },
+    {
+      "id": 4,
+      "name": "Роман"
+    },
+    {
+      "id": 5,
+      "name": "Рассказ"
+    },
+    {
+      "id": 6,
+      "name": "Повесть"
+    }
+    
+  ],
+  "bookslist": [
+    {
+      "id": 1,
+      "name": "Руслан и Людмила",
+      "str": 300,
+      "genre": 1
+    },
+    {
+      "id": 2,
+      "name": "Евгений Онегин",
+      "str": 200,
+      "genre": 4
+    },
+    {
+      "id": 3,
+      "name": "Пиковая Дама",
+      "str": 500,
+      "genre": 3
+    },
+    {
+      "id": 4,
+      "name": "Муму",
+      "str": 300,
+      "genre": 5
+    },
+    {
+      "id": 5,
+      "name": "Ася",
+      "str": 200,
+      "genre": 6
+    },
+    {
+      "id": 6,
+      "name": "Отцы и дети",
+      "str": 500,
+      "genre": 4
+    },
+    {
+      "id": 7,
+      "name": "Кобзарь",
+      "str": 300,
+      "genre": 2
+    },
+    {
+      "id": 8,
+      "name": "Наймычка",
+      "str": 200,
+      "genre": 1
+    },
+    {
+      "id": 9,
+      "name": "Кавказ",
+      "str": 500,
+      "genre": 1
+    }
+  ]
+}
