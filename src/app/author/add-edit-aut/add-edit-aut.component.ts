@@ -79,4 +79,6 @@ export class AddEditAutComponent implements OnInit {
     this.formClosed.emit();
     //this.VisibleAddEditAut = false;
   }
+  
 }
+

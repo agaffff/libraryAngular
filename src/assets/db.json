@@ -43,25 +43,13 @@
     },
     {
       "id": 5,
-      "lastName": "Агафонова",
-      "firstName": "Ольга",
-      "middleName": "Иванова",
-      "birthday": "2021-03-31",
-      "books": []
+      "firstName": "Фриман",
+      "books": [
+        10
+      ]
     },
     {
       "id": 6,
-      "lastName": "Агафонова",
-      "firstName": "Ольга",
-      "middleName": "Петрова",
-      "birthday": "2021-05-23",
-      "books": []
-    },
-    {
-      "id": 7,
-      "lastName": "ffffff",
-      "firstName": "fffffffff",
-      "middleName": "ffffffff",
       "books": []
     }
   ],
@@ -90,7 +78,6 @@
       "id": 6,
       "name": "Повесть"
     }
-    
   ],
   "bookslist": [
     {
@@ -146,6 +133,12 @@
       "name": "Кавказ",
       "str": 500,
       "genre": 1
+    },
+    {
+      "id": 10,
+      "name": "JavaScript",
+      "str": 200,
+      "genre": 0
     }
   ]
 }

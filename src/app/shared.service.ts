@@ -74,6 +74,38 @@ export class SharedService {
 
   }
 
+  addBook(val: any) {
+    return this.http.post(this.APIUrl + '/bookslist/', val).subscribe(
+      data => {
+        console.log('POST Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
+  }
+
+  updateBook(val: any) {
+    return this.http.patch(this.APIUrl + '/bookslist/' + val.id, val).subscribe(
+      data => {
+        console.log('PATCH Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
+  }
+  
+  deleteBook(val: any) {
+    //TODO: перед удалением сделать проверку не используется ли такой жанр в существующих книгах, если используется не удалять жанр
+    return this.http.delete(this.APIUrl + '/bookslist/' + val).subscribe(
+      data => {
+        console.log('DELETE Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      });
+  }
+
 
   getDataGenres() {
     return this.http.get<any>(this.APIUrl + '/genreslist/');

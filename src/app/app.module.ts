@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShowBooksComponent } from './author/add-edit-aut/show-books/show-books.component';
 import { AddEditBookComponent } from './author/add-edit-aut/add-edit-book/add-edit-book.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,8 @@ import { AddEditBookComponent } from './author/add-edit-aut/add-edit-book/add-ed
     AddEditGenComponent,
     ShowGenComponent,
     ShowBooksComponent,
-    AddEditBookComponent,
-    
+    AddEditBookComponent
+       
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ import { AddEditBookComponent } from './author/add-edit-aut/add-edit-book/add-ed
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ModalModule.forRoot()
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

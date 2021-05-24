@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Author } from 'src/app/author';
 import { SharedService } from 'src/app/shared.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { delay } from 'rxjs/operators';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -21,8 +20,9 @@ export class ShowAutComponent implements OnInit {
   VisibleAddEditAut: boolean = false;
   loading: boolean = true;
   closeResult = '';
+  modalRef!: BsModalRef;
 
-  constructor(private service: SharedService, private modalService: NgbModal) {
+  constructor(private service: SharedService, private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -51,7 +51,9 @@ export class ShowAutComponent implements OnInit {
     this.VisibleAddEditAut = false;
     //this.refreshAutList();
   }
-
+sumBooks(){
+   this.author.books(this.author.books.length);
+}
 
   
 
@@ -92,5 +94,12 @@ export class ShowAutComponent implements OnInit {
   deleteAuthor(id:any) {
     this.service.deleteAuthor(id)
   }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+}
+
+cancel(){
+  this.modalRef.hide();
+   }
 }
 

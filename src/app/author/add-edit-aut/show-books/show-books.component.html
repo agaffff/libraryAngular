@@ -1,6 +1,6 @@
 <!-- <app-add-edit-books *ngIf="VisibleAddEditBook" [book]=book (formClosed)="hideFormEdit()"></app-add-edit-books> -->
 
-<!-- <button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить новую книгу</button> -->
+<button type="button" class="btn btn-link float-left" (click)="addBook()">Добавить новую книгу</button>
 
 <table class="table table-striped">
     <thead>
@@ -13,25 +13,43 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let book of books">
-            <tr>
-                <td>
-                    {{book.name}}
-                </td>
-                <td>
-                    {{book.str}}
-                </td>
-                <td>
-                    {{book.genre}}
-                </td>
-                <td>
-                    <button class="btn btn-link col-sm-3" (click)="editBook(book.id)">Редактировать</button>
-                </td>
-                <td>
-                    <button class="btn btn-link col-sm-3" (click)="deleteBook(book.id)">Удалить</button>
-                </td>
-            </tr>
-
-        </ng-container>
+        <tr *ngFor="let book of books">
+            <ng-template [ngTemplateOutlet]="loadTemplate(book)" 
+                   [ngTemplateOutletContext]="{ $implicit: book}">
+            </ng-template>
+        </tr>
     </tbody>
 </table>
+<div>{{statusMessage}}</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-book>
+    <td>{{book.name}}</td>
+    <td>{{book.str}}</td>
+    <td>{{book.genre}}</td>
+    <td>
+        <input type="button" value="Изменить" class="btn btn-success" (click)="editBook(book)"/>
+    </td>
+    <td>
+        <input type="button" value="Удалить"  class="btn btn-danger" (click)="deleteBook(book.id)"/>
+    </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <td>
+        <input type="text" [(ngModel)]="editedBook.name" class="form-control" />
+    </td>
+    <td>
+        <input type="number" [(ngModel)]="editedBook.str" class="form-control" />
+    </td>
+    <td>
+        <input type="number" [(ngModel)]="editedBook.genre" class="form-control" />
+    </td>
+    <td>
+        <input type="button" value="Сохранить" class="btn btn-success" (click)="saveBook()"  />
+    </td>
+    <td>
+        <input type="button" value="Отмена" class="btn btn-warning" (click)="cancel()" />
+    </td>
+</ng-template>

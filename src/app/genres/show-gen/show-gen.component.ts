@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Genre } from 'src/app/genre';
 import { SharedService } from 'src/app/shared.service';
+
 
 @Component({
   selector: 'app-show-gen',
@@ -16,9 +18,14 @@ export class ShowGenComponent implements OnInit {
   genres: Genre[] = [];
   
   VisibleAddEditGen: boolean = false;
-  
+    
+  modalRef!: BsModalRef;
 
-  constructor(private service: SharedService) { }
+   
+
+  constructor(private service: SharedService,private modalService: BsModalService) { }
+  
+  
 
   ngOnInit(): void {
     this.refreshGenrList();
@@ -48,6 +55,20 @@ export class ShowGenComponent implements OnInit {
     this.VisibleAddEditGen = true;
   }
   deleteGenre(id:any) {
-    this.service.deleteGenre(id)
+    
+    this.service.deleteGenre(id);
+    this.modalRef.hide();
+    
   }
+  
+  
+ 
+  openModal(template: TemplateRef<any>) {
+      this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+ 
+  cancel(){
+    this.modalRef.hide();
+     }
 }
+

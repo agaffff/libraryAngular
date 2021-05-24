@@ -19,18 +19,25 @@
                     {{author.lastName}} {{author.firstName}} {{author.middleName}}
                 </td>
                 <td>
-                    {{author.birthday}}
+                    {{author.books.length}}
                 </td>
                 <td>
                     <button class="btn btn-link col-sm-3"(click)="editAuthor(author.id)">Редактировать</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3" (click)="deleteAuthor(author.id)" >Удалить</button>
+                    <button class="btn btn-link col-sm-3" (click)="openModal(template)" >Удалить</button>
                 </td>
                 <td>
                     <button class="btn btn-link col-sm-3" >Детали</button>
                 </td>
             </tr>
+            <ng-template #template>
+                <div class="modal-body text-center">
+                    <p>Вы действительно хотите удалить автора?</p>
+                    <button type="button" class="btn btn-default" (click)="deleteAuthor(author.id)">Да</button>
+                    <button type="button" class="btn btn-primary" (click)="cancel()">Нет</button>
+                </div>
+            </ng-template>
 
         </ng-container>
 

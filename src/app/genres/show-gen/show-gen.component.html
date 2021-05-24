@@ -1,6 +1,8 @@
 <app-add-edit-gen *ngIf="VisibleAddEditGen" [genre]=genre (formClosed)="hideFormEdit()"></app-add-edit-gen>
 <button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить жанр</button>
 
+
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -19,10 +21,17 @@
                     <button class="btn btn-link col-sm-3" (click)="editGenre(genre.id)">Редактировать</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3" (click)="deleteGenre(genre.id)">Удалить</button>
+                    <button class="btn btn-link col-sm-3" (click)="openModal(template)">Удалить</button>
                 </td>
             </tr>
 
+            <ng-template #template>
+                <div class="modal-body text-center">
+                    <p>Вы действительно хотите удалить жанр?</p>
+                    <button type="button" class="btn btn-default" (click)="deleteGenre(genre.id)">Да</button>
+                    <button type="button" class="btn btn-primary" (click)="cancel()">Нет</button>
+                </div>
+            </ng-template>
         </ng-container>
 
     </tbody>
