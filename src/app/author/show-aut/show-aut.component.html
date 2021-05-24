@@ -1,4 +1,4 @@
-<app-add-edit-aut  *ngIf="VisibleAddEditAut" [author]=author (formClosed)="hideFormEdit()"></app-add-edit-aut>
+<app-add-edit-aut *ngIf="VisibleAddEditAut" [author]=author (formClosed)="hideFormEdit()"></app-add-edit-aut>
 
 <button type="button" class="btn btn-link float-left" (click)="visibleFormEdit()">Добавить автора</button>
 
@@ -22,13 +22,13 @@
                     {{author.books.length}}
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3"(click)="editAuthor(author.id)">Редактировать</button>
+                    <button class="btn btn-link col-sm-3" (click)="editAuthor(author.id)">Редактировать</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3" (click)="openModal(template)" >Удалить</button>
+                    <button class="btn btn-link col-sm-3" (click)="openModal(template)">Удалить</button>
                 </td>
                 <td>
-                    <button class="btn btn-link col-sm-3" >Детали</button>
+                    <button class="btn btn-link col-sm-3" (click)="openModalDetails(template_, author.books)">Детали</button>
                 </td>
             </tr>
             <ng-template #template>
@@ -39,10 +39,26 @@
                 </div>
             </ng-template>
 
-        </ng-container>
+            <ng-template #template_>
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Информация</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{author.lastName}} {{author.firstName}} {{author.middleName}}</p>
+                    <p>{{author.birthday}}</p>
+                    
+                    <ul>
+                        <ng-container *ngFor="let book of books">
+                            <li>{{book.name}}</li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </ng-template>
 
+        </ng-container>
+        
     </tbody>
 </table>
-
-
-
